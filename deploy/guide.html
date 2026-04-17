@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우리 목장 출석부 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f3f4f6;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .slide-container {
+            scroll-snap-type: x mandatory;
+        }
+
+        .slide {
+            scroll-snap-align: start;
+        }
+
+        /* 앱 화면 목업 스타일 */
+        .app-mockup {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            font-size: 0.85rem;
+        }
+
+        .mockup-header {
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mockup-body {
+            padding: 12px;
+        }
+
+        /* 애니메이션 */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* 사용자 지정 스크롤바 숨기기 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center min-h-screen">
+
+    <!-- 메인 컨테이너 (모바일 화면 비율) -->
+    <div
+        class="relative w-full max-w-[420px] h-[800px] bg-white sm:rounded-[30px] sm:shadow-2xl overflow-hidden flex flex-col">
+
+        <!-- 상단 상태바 (장식용) -->
+        <div class="h-6 bg-white w-full flex justify-between items-center px-6 pt-2 z-10">
+            <div class="text-xs font-bold text-gray-800">9:41</div>
+            <div class="flex space-x-1.5">
+                <div class="w-4 h-2.5 bg-gray-800 rounded-sm"></div>
+                <div class="w-0.5 h-2.5 bg-gray-300 rounded-sm"></div>
+            </div>
+        </div>
+
+        <!-- 슬라이더 영역 -->
+        <div id="slider"
+            class="flex-1 flex overflow-x-auto no-scrollbar slide-container snap-x snap-mandatory relative z-0">
+
+            <!-- 카드 1: 표지 -->
+            <div
+                class="slide min-w-full h-full flex flex-col bg-gradient-to-br from-blue-50 to-indigo-100 p-8 text-center justify-center relative">
+                <div class="mb-8 floating">
+                    <i class="fas fa-clipboard-check text-8xl text-indigo-500 drop-shadow-lg"></i>
+                </div>
+                <h1 class="text-3xl font-black text-gray-800 mb-2 leading-tight">
+                    종이 출석부는<br>이제 그만! 👋
+                </h1>
+                <p class="text-gray-600 mb-8 font-medium">
+                    스마트폰으로 끝내는<br>우리 목장 출석 관리 가이드
+                </p>
+                <div
+                    class="bg-white/60 backdrop-blur-sm rounded-xl p-4 text-sm text-gray-700 shadow-sm border border-white/50">
+                    <span class="font-bold text-indigo-600">Tip.</span> 화면을 옆으로 넘겨보세요
+                </div>
+            </div>
+
+            <!-- 카드 2: 출석 체크 -->
+            <div class="slide min-w-full h-full flex flex-col bg-white p-8 relative">
+                <div class="flex-1 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">Step
+                        1. 기본 출석</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">"오늘 누가 왔나요?"<br>3초면 출석 끝!</h2>
+                    <p class="text-gray-500 text-sm mb-6">날짜와 목장을 선택하고<br>이름을 터치하면 색깔이 변해요.</p>
+
+                    <!-- Mockup: 출석 화면 -->
+                    <div class="app-mockup">
+                        <div class="mockup-header">
+                            <span>사랑목장 (7월 21일)</span>
+                            <i class="fas fa-ellipsis-v text-xs"></i>
+                        </div>
+                        <div class="mockup-body bg-gray-50">
+                            <div class="grid grid-cols-3 gap-2 mb-4">
+                                <div
+                                    class="bg-white border-2 border-gray-200 text-gray-400 rounded-lg p-3 text-center text-xs font-bold">
+                                    김철수</div>
+                                <div
+                                    class="bg-green-500 border-2 border-green-500 text-white shadow-md rounded-lg p-3 text-center text-xs font-bold transform -translate-y-0.5">
+                                    이영희<br><i class="fas fa-check mt-1"></i></div>
+                                <div
+                                    class="bg-white border-2 border-gray-200 text-gray-400 rounded-lg p-3 text-center text-xs font-bold">
+                                    박민수</div>
+                            </div>
+                            <button class="w-full bg-gray-800 text-white py-2 rounded-md text-xs font-bold">출석
+                                저장</button>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-center justify-center text-xs text-green-600 font-bold">
+                        <i class="fas fa-hand-pointer mr-2 animate-bounce"></i> 초록색 = 출석 완료
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 3: 스마트 기능 -->
+            <div class="slide min-w-full h-full flex flex-col bg-white p-8 relative">
+                <div class="flex-1 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">Step
+                        1. 스마트 꿀팁</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">"우리 목장 전원 출석!"<br>일일이 누르지 마세요</h2>
+                    <p class="text-gray-500 text-sm mb-6">전체 출석 버튼으로 한 번에!<br>안 보이던 학생도 쉽게 찾아요.</p>
+
+                    <!-- Mockup: 전체 출석 및 팝업 -->
+                    <div class="app-mockup relative">
+                        <div class="mockup-body bg-gray-50 p-4">
+                            <div
+                                class="flex justify-between items-center mb-4 bg-white p-2 rounded border border-gray-200">
+                                <span class="font-bold text-gray-700 text-xs">총원 12명 / 출석 12명</span>
+                                <button class="bg-indigo-500 text-white px-3 py-1 rounded-full text-xs">전체출석</button>
+                            </div>
+
+                            <!-- 가상의 팝업 -->
+                            <div
+                                class="bg-white rounded-lg shadow-lg border border-gray-200 p-3 relative z-10 transform scale-95 origin-center">
+                                <div class="text-center">
+                                    <i class="fas fa-exclamation-circle text-orange-400 mb-2 text-xl"></i>
+                                    <p class="text-xs font-bold text-gray-800 mb-1">'홍길동' 학생 활성화</p>
+                                    <p class="text-[10px] text-gray-500 mb-3">현재 비활성 상태입니다.<br>활성화하고 출석 체크할까요?</p>
+                                    <div class="flex gap-2">
+                                        <button
+                                            class="flex-1 bg-gray-200 text-gray-600 py-1 rounded text-xs">취소</button>
+                                        <button class="flex-1 bg-indigo-500 text-white py-1 rounded text-xs">확인</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 4: 통계 -->
+            <div class="slide min-w-full h-full flex flex-col bg-white p-8 relative">
+                <div class="flex-1 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">Step
+                        2. 통계 확인</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">출석률과 흐름,<br>데이터로 확인하세요 📊</h2>
+                    <p class="text-gray-500 text-sm mb-6">이번 주 출석 현황과<br>최근 5주간의 추이를 한눈에!</p>
+
+                    <!-- Mockup: 차트 -->
+                    <div class="app-mockup">
+                        <div class="mockup-header bg-white border-b border-gray-100">
+                            <span class="text-gray-800">5주 추이 그래프</span>
+                            <div class="flex gap-1">
+                                <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                                <span class="w-2 h-2 rounded-full bg-blue-400"></span>
+                            </div>
+                        </div>
+                        <div
+                            class="mockup-body bg-white flex items-end justify-between h-32 px-4 pb-2 border-b border-gray-100">
+                            <!-- 차트 막대들 -->
+                            <div class="w-4 bg-red-200 rounded-t h-[40%] relative group">
+                                <div
+                                    class="absolute -top-4 left-1/2 transform -translate-x-1/2 text-[9px] text-gray-500">
+                                    8명</div>
+                            </div>
+                            <div class="w-4 bg-red-300 rounded-t h-[50%]"></div>
+                            <div class="w-4 bg-red-400 rounded-t h-[45%]"></div>
+                            <div class="w-4 bg-red-400 rounded-t h-[70%]"></div>
+                            <div class="w-4 bg-red-500 rounded-t h-[85%] relative">
+                                <div
+                                    class="absolute -top-4 left-1/2 transform -translate-x-1/2 text-[9px] font-bold text-red-600">
+                                    14명</div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-gray-50">
+                            <table class="w-full text-xs text-center">
+                                <tr class="text-gray-400 border-b border-gray-200">
+                                    <th class="pb-1 font-normal">구분</th>
+                                    <th class="pb-1 font-normal">출석</th>
+                                    <th class="pb-1 font-normal">비율</th>
+                                </tr>
+                                <tr class="font-bold text-gray-700">
+                                    <td class="pt-2">전체</td>
+                                    <td class="pt-2 text-indigo-600">42명</td>
+                                    <td class="pt-2">88%</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 5: 케어 -->
+            <div class="slide min-w-full h-full flex flex-col bg-white p-8 relative">
+                <div class="flex-1 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">Step
+                        3. 세심한 케어</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">생일과 장기 결석,<br>앱이 먼저 알려드려요 💌</h2>
+                    <p class="text-gray-500 text-sm mb-6">D-Day 알림과 장기 결석자를 확인하고<br>버튼 하나로 바로 연락해보세요.</p>
+
+                    <!-- Mockup: 생일 및 결석 카드 -->
+                    <div class="flex flex-col gap-3">
+                        <!-- 생일 카드 -->
+                        <div
+                            class="bg-white border-l-4 border-pink-400 shadow-sm rounded-r-lg p-4 flex justify-between items-center">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="font-bold text-gray-800">이지은</span>
+                                    <span
+                                        class="bg-pink-100 text-pink-600 text-[10px] px-2 py-0.5 rounded-full font-bold">D-3</span>
+                                </div>
+                                <div class="text-xs text-gray-400">7월 24일 (이번 주 금요일)</div>
+                            </div>
+                            <div class="flex gap-1">
+                                <button
+                                    class="w-8 h-8 rounded bg-blue-50 text-blue-500 flex items-center justify-center"><i
+                                        class="fas fa-phone text-xs"></i></button>
+                                <button
+                                    class="w-8 h-8 rounded bg-purple-50 text-purple-500 flex items-center justify-center"><i
+                                        class="fas fa-comment text-xs"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- 결석 카드 -->
+                        <div
+                            class="bg-white border-l-4 border-gray-400 shadow-sm rounded-r-lg p-4 flex justify-between items-center opacity-80">
+                            <div>
+                                <div class="font-bold text-gray-800 mb-1">박철민</div>
+                                <div class="text-xs text-red-500 font-medium">최근 4주 결석</div>
+                            </div>
+                            <div class="flex gap-1">
+                                <button
+                                    class="w-8 h-8 rounded bg-gray-100 text-gray-500 flex items-center justify-center"><i
+                                        class="fas fa-phone text-xs"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 6: 관리 -->
+            <div class="slide min-w-full h-full flex flex-col bg-white p-8 relative">
+                <div class="flex-1 flex flex-col justify-center">
+                    <span
+                        class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold mb-4 w-fit">Step
+                        4. 학생 관리</span>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2">새 친구가 왔나요?<br>바로 등록하세요!</h2>
+                    <p class="text-gray-500 text-sm mb-6">학생 추가/수정은 물론,<br>이름 검색으로 쉽게 찾을 수 있어요.</p>
+
+                    <!-- Mockup: 등록 폼 -->
+                    <div class="app-mockup">
+                        <div class="mockup-header">
+                            <span>학생 추가</span>
+                        </div>
+                        <div class="mockup-body bg-white">
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-[10px] text-gray-500 font-bold mb-1">이름</label>
+                                    <div
+                                        class="w-full bg-gray-50 border border-gray-200 rounded px-2 py-1.5 text-xs text-gray-800">
+                                        새친구</div>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] text-gray-500 font-bold mb-1">소속 목장</label>
+                                    <div
+                                        class="w-full bg-white border border-gray-200 rounded px-2 py-1.5 text-xs text-gray-800 flex justify-between items-center">
+                                        <span>사랑목장</span>
+                                        <i class="fas fa-chevron-down text-[8px] text-gray-400"></i>
+                                    </div>
+                                </div>
+                                <div class="pt-2">
+                                    <div
+                                        class="w-full bg-gray-100 border border-gray-200 rounded p-2 flex items-center gap-2">
+                                        <i class="fas fa-search text-gray-400 text-xs"></i>
+                                        <span class="text-xs text-gray-400">학생 이름 검색...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 카드 7: 마무리 -->
+            <div class="slide min-w-full h-full flex flex-col bg-gray-900 p-8 text-center justify-center relative">
+                <div class="mb-6">
+                    <i class="fas fa-heart text-6xl text-red-500 animate-pulse"></i>
+                </div>
+                <h1 class="text-2xl font-bold text-white mb-4 leading-snug">
+                    선생님의 수고를 덜고,<br>아이들에게 더 집중하세요.
+                </h1>
+                <p class="text-gray-400 mb-10 text-sm">
+                    스마트 출석부와 함께<br>이번 주일도 파이팅! ❤️
+                </p>
+
+                <button onclick="window.location.href='/'"
+                    class="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold py-4 rounded-xl shadow-lg transform transition active:scale-95 flex items-center justify-center gap-2">
+                    <span>출석부 사용하러 가기</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- 하단 인디케이터 & 네비게이션 -->
+        <div class="absolute bottom-6 left-0 w-full px-8 flex justify-between items-center z-20 pointer-events-none">
+            <!-- 인디케이터 -->
+            <div class="flex space-x-2" id="indicators">
+                <!-- JS로 생성됨 -->
+            </div>
+
+            <!-- 네비게이션 버튼 (데스크탑용, 모바일에서는 터치 스와이프가 주력) -->
+            <div class="pointer-events-auto flex gap-2">
+                <button id="prevBtn"
+                    class="w-10 h-10 rounded-full bg-black/10 backdrop-blur-sm flex items-center justify-center text-gray-600 hover:bg-black/20 transition disabled:opacity-30">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="nextBtn"
+                    class="w-10 h-10 rounded-full bg-black/80 backdrop-blur-sm flex items-center justify-center text-white hover:bg-black/90 transition shadow-lg">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const slider = document.getElementById('slider');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+        let currentIndex = 0;
+
+        // 인디케이터 생성
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = `w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-gray-800 w-4' : 'bg-gray-300'}`;
+            indicatorsContainer.appendChild(dot);
+        });
+
+        const dots = indicatorsContainer.querySelectorAll('div');
+
+        function updateSlider() {
+            // 스크롤 이동
+            slider.scrollTo({
+                left: slider.clientWidth * currentIndex,
+                behavior: 'smooth'
+            });
+
+            // 인디케이터 업데이트
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-gray-800', 'w-4');
+                    // 마지막 슬라이드(어두운 배경)일 때 인디케이터 색상 변경
+                    if (currentIndex === slides.length - 1) {
+                        dot.classList.remove('bg-gray-800');
+                        dot.classList.add('bg-white');
+                    } else {
+                        dot.classList.remove('bg-white');
+                        dot.classList.add('bg-gray-800');
+                    }
+                } else {
+                    dot.classList.remove('bg-gray-800', 'w-4', 'bg-white');
+                    dot.classList.add('bg-gray-300', 'w-2');
+                    // 마지막 슬라이드일 때 비활성 인디케이터도 약간 밝게
+                    if (currentIndex === slides.length - 1) {
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-gray-600');
+                    } else {
+                        dot.classList.remove('bg-gray-600');
+                        dot.classList.add('bg-gray-300');
+                    }
+                }
+            });
+
+            // 버튼 상태
+            prevBtn.disabled = currentIndex === 0;
+            if (currentIndex === slides.length - 1) {
+                nextBtn.innerHTML = '<i class="fas fa-check"></i>';
+                prevBtn.classList.add('text-gray-400'); // 다크모드 대응
+            } else {
+                nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                prevBtn.classList.remove('text-gray-400');
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < slides.length - 1) {
+                currentIndex++;
+                updateSlider();
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlider();
+            }
+        });
+
+        // 스크롤 이벤트 감지 (터치 스와이프 대응)
+        let isScrolling;
+        slider.addEventListener('scroll', () => {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                const scrollLeft = slider.scrollLeft;
+                const width = slider.clientWidth;
+                currentIndex = Math.round(scrollLeft / width);
+                updateSlider();
+            }, 66); // Throttle
+        });
+
+        // 초기 상태 설정
+        updateSlider();
+    </script>
+</body>
+
+</html>
